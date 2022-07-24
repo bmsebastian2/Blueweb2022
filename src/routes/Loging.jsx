@@ -1,4 +1,4 @@
-import React, { useContext} from "react";
+import React, { useContext } from "react";
 import { UserContext } from "../context/UserProvider";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -6,9 +6,12 @@ import { swicthError } from "../funtions/mainFunction";
 import FormError from "../components/FormError";
 import FormInput from "../components/FormInput";
 import { formValidate } from "../funtions/mainFunction";
+import TextForm from "../components/TextForm";
+import ButtonCustom from "../components/ButtonCustom";
 
 const Loging = () => {
-  const { required, patternEmail, minLength, validateBlanco } = formValidate();
+  const { required, patternEmail, funcMinlength, validateBlanco } =
+    formValidate();
 
   const { logingUser } = useContext(UserContext);
   const navegate = useNavigate();
@@ -26,18 +29,20 @@ const Loging = () => {
       alert("Usuario Logeado");
       navegate("/sistema");
     } catch (error) {
-      swicthError(error.code, setError);
+      const { indice, message } = swicthError(error.code);
+      setError(indice, { type: "focus", message }, { shouldFocus: true });
     }
   };
 
   return (
     <>
-      <h1>Loging</h1>
+      <TextForm title="Logging de Usuario:" />
       <FormError error={errors.firebase} />
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormInput
           type="email"
           placeholder="Ingrese Email"
+          errorC={errors.email}
           {...register("email", {
             required,
             pattern: patternEmail,
@@ -47,13 +52,14 @@ const Loging = () => {
         <FormInput
           type="password"
           placeholder="Ingrese password"
+          errorC={errors.password}
           {...register("password", {
-            minLength,
+            minLength: funcMinlength(6),
             validate: validateBlanco,
           })}
         />
         <FormError error={errors.password} />
-        <button type="submit">Loging</button>
+        <ButtonCustom type="submit" name={"Logging"} />
       </form>
     </>
   );

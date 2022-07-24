@@ -1,37 +1,19 @@
-const swicthError = (error, setError) => {
+const swicthError = (error) => {
   switch (error) {
     case "auth/wrong-password":
-      setError(
-        "firebase",
-        { type: "focus", message: "Error contraseña." },
-        { shouldFocus: true }
-      );
+      return { indice: "password", message: "Error contraseña." };
       break;
     case "auth/user-not-found":
-      setError(
-        "firebase",
-        { type: "focus", message: "Error Usuario." },
-        { shouldFocus: true }
-      );
+      return { indice: "email", message: "Error Usuario." };
       break;
     case "auth/email-already-in-use":
-      setError(
-        "firebase",
-        { type: "focus", message: "Usuario ya esta registrado." },
-        { shouldFocus: true }
-      );
+      return { indice: "email", message: "Usuario ya esta registrado." };
       break;
-
     case "auth/invalid-email":
-      setError(
-        "firebase",
-        { type: "focus", message: "Error en Formato de Email." },
-        { shouldFocus: true }
-      );
+      return "Error en Formato de Email.";
       break;
-
     default:
-      return "";
+      return "Error en backend no registrado";
       break;
   }
 };

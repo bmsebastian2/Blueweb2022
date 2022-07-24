@@ -6,10 +6,17 @@ import { swicthError } from "../funtions/mainFunction";
 import FormError from "../components/FormError";
 import FormInput from "../components/FormInput";
 import { formValidate } from "../funtions/mainFunction";
+import TextForm from "../components/TextForm";
+import ButtonCustom from "../components/ButtonCustom";
 
 const Registro = () => {
-  const { required, patternEmail, validateEquals, minLength, validateBlanco } =
-    formValidate();
+  const {
+    required,
+    patternEmail,
+    validateEquals,
+    funcMinlength,
+    validateBlanco,
+  } = formValidate();
   const { registerUser } = useContext(UserContext);
   const navegate = useNavigate();
 
@@ -24,19 +31,23 @@ const Registro = () => {
   const onSubmit = async ({ email, password }) => {
     try {
       await registerUser(email, password);
+      navegate("/");
       alert("Usuario registrado");
     } catch (error) {
-      swicthError(error.code, setError);
+      const { indice, message } = swicthError(error.code);
+      setError(indice, { type: "focus", message }, { shouldFocus: true });
     }
   };
 
   return (
     <>
-      <h1>registro</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>        
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <TextForm title="Registro de Usuario" />
+        <FormError error={errors.firebase} />
         <FormInput
           type="email"
-          placeholder="Ingrese Email"
+          label="Ingrese Email:"
+          errorC={errors.email}
           {...register("email", {
             required,
             pattern: patternEmail,
@@ -45,23 +56,24 @@ const Registro = () => {
         <FormError error={errors.email} />
         <FormInput
           type="password"
-          placeholder="Ingrese password"
+          label="Ingrese Password:"
+          errorC={errors.password}
           {...register("password", {
-            minLength,
+            minLength: funcMinlength(6),
             validate: validateBlanco,
           })}
         />
         <FormError error={errors.password} />
-
         <FormInput
           type="password"
-          placeholder="Ingrese password"
+          label="Repite contraseña:"
+          errorC={errors.repassword}
           {...register("repassword", {
-            validate: validateEquals(getValues),
+            validate: validateEquals(getValues("password")),
           })}
         />
         <FormError error={errors.repassword} />
-        <button type="submit">Registro</button>
+        <ButtonCustom type="submit" name="Registro" />
       </form>
     </>
   );

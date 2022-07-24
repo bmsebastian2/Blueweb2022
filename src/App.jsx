@@ -3,11 +3,12 @@ import Menu from "./components/Menu";
 import RoutesPage from "./components/RoutesPage";
 import { useContext } from "react";
 import { UserContext } from "./context/UserProvider";
+import Loading from "./components/Loading";
 
 function App() {
   const { user } = useContext(UserContext);
   if (user === false) {
-    return <p>Loading</p>;
+    return <Loading />;
   }
 
   return (

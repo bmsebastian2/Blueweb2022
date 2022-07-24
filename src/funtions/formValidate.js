@@ -1,4 +1,4 @@
-const formValidate = (getValues) => {
+const formValidate = () => {
   return {
     required: {
       value: true,
@@ -8,18 +8,19 @@ const formValidate = (getValues) => {
       value: /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/,
       message: "Formato de email incorrecto",
     },
-    minLength: {
-      value: 6,
-      message: "Minimos 6 caracteres",
+    funcMinlength(number) {
+      return {
+        value: number,
+        message: "Minimos 6 caracteres",
+      };
     },
     validateBlanco: {
       eq: (va) =>
         va.trim() !== "" || "Clave en blanco // son todos espacio en blancos",
     },
-    validateEquals(getValues) {
+    validateEquals(value) {
       return {
-        equals: (valor) =>
-          valor === getValues("password") || "No coinciden las contraseñas",
+        equals: (valor) => valor === value || "No coinciden las contraseñas",
       };
     },
     //
