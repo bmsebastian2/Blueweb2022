@@ -1,12 +1,15 @@
-import React, { useContext, useState } from "react";
+import React, { useContext} from "react";
 import { UserContext } from "../context/UserProvider";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import InputEmail from "../components/InputEmail";
-import InputPassword from "../components/InputPassword";
 import { swicthError } from "../funtions/mainFunction";
+import FormError from "../components/FormError";
+import FormInput from "../components/FormInput";
+import { formValidate } from "../funtions/mainFunction";
 
 const Loging = () => {
+  const { required, patternEmail, minLength, validateBlanco } = formValidate();
+
   const { logingUser } = useContext(UserContext);
   const navegate = useNavigate();
 
@@ -30,13 +33,26 @@ const Loging = () => {
   return (
     <>
       <h1>Loging</h1>
-      {errors.firebase && <p>{errors.firebase.message}</p>}
+      <FormError error={errors.firebase} />
       <form onSubmit={handleSubmit(onSubmit)}>
-        <InputEmail register={register} />
-        {errors.email && <p>{errors.email.message}</p>}
-
-        <InputPassword register={register} />
-        {errors.password && <p>{errors.password.message}</p>}
+        <FormInput
+          type="email"
+          placeholder="Ingrese Email"
+          {...register("email", {
+            required,
+            pattern: patternEmail,
+          })}
+        />
+        <FormError error={errors.email} />
+        <FormInput
+          type="password"
+          placeholder="Ingrese password"
+          {...register("password", {
+            minLength,
+            validate: validateBlanco,
+          })}
+        />
+        <FormError error={errors.password} />
         <button type="submit">Loging</button>
       </form>
     </>
