@@ -1,24 +1,23 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-.App{
-    background-color: rgb(226, 223, 223);
+.App {
     min-height: 100vh;
-    
-    
 
 }
-.containerHeader{
-    padding: 2rem;
+
+.containerHeader {
+    /* padding: 2rem; */
 }
-.header{
-    display: flex;
+
+.header {
+    /* display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 2rem;
-    border: 1px solid gray;
-    
+    border: 1px solid gray; */
+
 }

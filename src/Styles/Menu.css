@@ -1,8 +1,9 @@
+a:hover {
+    color: rgb(22, 228, 83);
 
-a:hover{
-    color: brown;
 }
-.active{
+
+.active {
     color: blue;
     pointer-events: none;
 }

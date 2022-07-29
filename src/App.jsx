@@ -16,9 +16,6 @@ function App() {
       <div className="containerHeader">
         <div className="header">
           <div className="">
-            <h1>Sistema APP V 1.0</h1>
-          </div>
-          <div className="">
             <Menu />
           </div>
         </div>

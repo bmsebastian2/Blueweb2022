@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { swicthError } from "../funtions/mainFunction";
 import FormError from "../components/FormError";
 import FormInput from "../components/FormInput";
-import { formValidate } from "../funtions/mainFunction";
+import { formValidate, setColorError } from "../funtions/mainFunction";
 import TextForm from "../components/TextForm";
 import ButtonCustom from "../components/ButtonCustom";
 
@@ -42,7 +42,7 @@ const Loging = () => {
         <FormInput
           type="email"
           placeholder="Ingrese Email"
-          errorC={errors.email}
+             errorC={setColorError(errors.email)}
           {...register("email", {
             required,
             pattern: patternEmail,
@@ -52,7 +52,7 @@ const Loging = () => {
         <FormInput
           type="password"
           placeholder="Ingrese password"
-          errorC={errors.password}
+              errorC={setColorError(errors.password)}
           {...register("password", {
             minLength: funcMinlength(6),
             validate: validateBlanco,

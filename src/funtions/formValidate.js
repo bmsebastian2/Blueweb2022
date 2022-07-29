@@ -14,17 +14,13 @@ const formValidate = () => {
         message: "Minimos 6 caracteres",
       };
     },
-    validateBlanco: {
-      eq: (va) =>
-        va.trim() !== "" || "Clave en blanco // son todos espacio en blancos",
-    },
-    validateEquals(value) {
+    validateBlanco: (v) =>
+      v.trim() !== "" || "Clave en blanco // son todos espacio en blancos",
+    validateEqual(value) {
       return {
         equals: (valor) => valor === value || "No coinciden las contraseñas",
       };
     },
-    //
-    //
   };
 };
 

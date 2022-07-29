@@ -5,7 +5,7 @@ import { UserContext } from "../context/UserProvider";
 import { swicthError } from "../funtions/mainFunction";
 import FormError from "../components/FormError";
 import FormInput from "../components/FormInput";
-import { formValidate } from "../funtions/mainFunction";
+import { formValidate, setColorError } from "../funtions/mainFunction";
 import TextForm from "../components/TextForm";
 import ButtonCustom from "../components/ButtonCustom";
 
@@ -13,7 +13,7 @@ const Registro = () => {
   const {
     required,
     patternEmail,
-    validateEquals,
+    validateEqual,
     funcMinlength,
     validateBlanco,
   } = formValidate();
@@ -46,8 +46,8 @@ const Registro = () => {
         <FormError error={errors.firebase} />
         <FormInput
           type="email"
-          label="Ingrese Email:"
-          errorC={errors.email}
+          label="Ingrese Email:"       
+          errorC={setColorError(errors.email)}
           {...register("email", {
             required,
             pattern: patternEmail,
@@ -56,8 +56,8 @@ const Registro = () => {
         <FormError error={errors.email} />
         <FormInput
           type="password"
-          label="Ingrese Password:"
-          errorC={errors.password}
+          label="Ingrese Password:"          
+          errorC={setColorError(errors.password)}
           {...register("password", {
             minLength: funcMinlength(6),
             validate: validateBlanco,
@@ -67,9 +67,9 @@ const Registro = () => {
         <FormInput
           type="password"
           label="Repite contraseña:"
-          errorC={errors.repassword}
+          errorC={setColorError(errors.repassword)}
           {...register("repassword", {
-            validate: validateEquals(getValues("password")),
+            validate: validateEqual(getValues("password")),
           })}
         />
         <FormError error={errors.repassword} />
