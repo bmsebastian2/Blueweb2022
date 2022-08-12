@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const Sistema = () => {
-  return (
-    <div>Sistema</div>
-  )
-}
+  return <div>Sistema</div>;
+};
 
-export default Sistema
+export default Sistema;

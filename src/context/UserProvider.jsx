@@ -5,6 +5,7 @@ import {
   signOut,
 } from "firebase/auth";
 import { createContext, useState, useEffect } from "react";
+
 import { auth } from "../firebase";
 
 export const UserContext = createContext();
@@ -43,6 +44,7 @@ const UserProvider = ({ children }) => {
     >
       {children}
     </UserContext.Provider>
+   
   );
 };
 

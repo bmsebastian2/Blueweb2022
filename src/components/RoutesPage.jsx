@@ -4,8 +4,9 @@ import Registro from "../routes/Registro";
 import Loging from "../routes/Loging";
 import Sistema from "../routes/Sistema";
 import { Routes, Route } from "react-router-dom";
-import RequireAuth from "./RequireAuth";
-import LayoutContainer from "./LayoutContainer";
+import LayoutContainer from "./layout/LayoutContainer";
+import LayaoutAuthentics from "./layout/LayaoutAuthentics";
+import EditUser from "../routes/EditUser";
 
 const RoutesPage = () => {
   return (
@@ -16,15 +17,10 @@ const RoutesPage = () => {
           <Route path="registro" element={<Registro />} />
           <Route path="loging" element={<Loging />} />;
         </Route>
-        <Route
-          path="sistema"
-          element={
-            <RequireAuth>
-              <Sistema />
-            </RequireAuth>
-          }
-        />
-        ;
+        <Route path="/" element={<LayaoutAuthentics />}>
+          <Route path="sistema" element={<Sistema />} />
+          <Route path="edituser" element={<EditUser />} />
+        </Route>
       </Routes>
     </div>
   );

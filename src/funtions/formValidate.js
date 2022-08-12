@@ -16,9 +16,10 @@ const formValidate = () => {
     },
     validateBlanco: (v) =>
       v.trim() !== "" || "Clave en blanco // son todos espacio en blancos",
-    validateEqual(value) {
+    validateEqual(getValues) {
       return {
-        equals: (valor) => valor === value || "No coinciden las contraseñas",
+        equals: (e) =>
+          e === getValues("password") || "No coinciden las contraseñas", 
       };
     },
   };
