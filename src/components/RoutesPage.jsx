@@ -7,6 +7,7 @@ import { Routes, Route } from "react-router-dom";
 import LayoutContainer from "./layout/LayoutContainer";
 import LayaoutAuthentics from "./layout/LayaoutAuthentics";
 import EditUser from "../routes/EditUser";
+import Error404 from "../routes/Error404";
 
 const RoutesPage = () => {
   return (
@@ -21,6 +22,7 @@ const RoutesPage = () => {
           <Route path="sistema" element={<Sistema />} />
           <Route path="edituser" element={<EditUser />} />
         </Route>
+        <Route path="*" element={<Error404 />} />
       </Routes>
     </div>
   );
