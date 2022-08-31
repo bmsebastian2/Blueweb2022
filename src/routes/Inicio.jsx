@@ -1,12 +1,13 @@
 import React from "react";
 import TextForm from "../components/TextForm";
-import GetList from "../hooks/GetList";
+import PostList from "../hooks/PostList";
 
 const Inicio = () => {
   return (
     <>
       <TextForm title="Inicio" />
-      <GetList url="urls" />
+      <p>Data:</p>
+      <PostList />
     </>
   );
 };

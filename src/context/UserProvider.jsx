@@ -27,8 +27,7 @@ const UserProvider = ({ children }) => {
 
   useEffect(() => {
     const onSubcribe = onAuthStateChanged(auth, (user) => {
-      console.log(user);
-      if (user) {
+           if (user) {
         const { email, photoURL, displayName, uid } = user;
         setUser({ email, photoURL, displayName, uid });
       } else {
@@ -44,7 +43,6 @@ const UserProvider = ({ children }) => {
     >
       {children}
     </UserContext.Provider>
-   
   );
 };
 
